@@ -15,7 +15,16 @@ export default class Controller {
   }
   async createOne(req, res, next) {
     try {
+      console.log(req.body.password);
       const data = await this.tableName.create({ ...req.body });
+      return sendMessage(res, 200, "Created successfully", data);
+    } catch (error) {
+      return sendMessage(res, 500, "Error occured", error);
+    }
+  }
+  async buchCreate(req, res, next) {
+    try {
+      const data = await this.tableName.bulkCreate({ ...req.body });
       return sendMessage(res, 200, "Created successfully", data);
     } catch (error) {
       return sendMessage(res, 500, "Error occured", error);
