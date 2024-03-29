@@ -53,7 +53,7 @@ describe("UserController", () => {
       expect(sendMessage).toHaveBeenCalledWith(
         res,
         403,
-        "Incorrect credentials"
+        "Account is not activated"
       );
       expect(res.cookie).not.toHaveBeenCalled();
     });
