@@ -1,6 +1,6 @@
 # Welcome
 
-Welcome to to Milian eWallet. This is a project completed as part of the assessment for the internship at RSSB. It contains two parts. The first part explains the steps to take to run this project, and the second part contains general steps that have to be taken to complete a software product
+Welcome to to Milian eWallet. It contains two parts. The first part explains the steps to take to run this project, and the second part contains general steps that have to be taken to complete a software product
 
 # Part I: The Project
 
