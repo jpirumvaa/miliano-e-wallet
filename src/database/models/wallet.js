@@ -1,5 +1,11 @@
 "use strict";
 const { Model } = require("sequelize");
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: Model for wallets
+ * @lastUpdated: Mar 29, 2023
+ */
 module.exports = (sequelize, DataTypes) => {
   class Wallet extends Model {
     /**
@@ -8,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // associations
       Wallet.belongsTo(models.User, {
         foreignKey: "userId",
         as: "user",

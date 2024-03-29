@@ -1,4 +1,11 @@
 "use strict";
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: Model for transactions
+ * @lastUpdated: Mar 29, 2023
+ */
+
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Transaction extends Model {

@@ -1,15 +1,9 @@
 import Router from "express";
 import { checkAuth } from "../middleware/checkAuth.js";
-// import WalletController from "../controller/Wallet.js";
 import TransactionController from "../controller/Transaction.js";
 import { transactValidation } from "../middleware/validations/transaction.js";
 import db from "../database/models";
 import { transact } from "../middleware/transact.js";
-// import {
-//   updateWalletValidation,
-//   walletValidation,
-// } from "../middleware/validations/wallet.js";
-// import { addWalletCreationData } from "../middleware/data_manipulators/wallet.js";
 
 const router = Router();
 

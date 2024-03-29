@@ -1,6 +1,15 @@
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: Controler class for users. It inherts from Controller class, implements its methods, and adds login and logout.
+ * @lastUpdated: Mar 29, 2023
+ */
+
+//external imports
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+//internal imports
 import Controller from "../utils/Controller";
 import { User } from "../database/models";
 import { sendMessage } from "../utils/sendMessage";
@@ -38,6 +47,7 @@ export default class UserController extends Controller {
         process.env.JWT_SECRET,
         { expiresIn: "1d" }
       );
+      //set HTTP only cookies after successful login
       res.cookie("auth-token", token, {
         path: "/",
         sameSite: "strict",
@@ -53,6 +63,7 @@ export default class UserController extends Controller {
     }
   }
   async logout(req, res, next) {
+    //kill the cookie created on login
     res.clearCookie("auth-token", { path: "/" });
     return sendMessage(res, 200, "Logged out successfully");
   }

@@ -1,5 +1,13 @@
 "use strict";
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: handles migration of Users table
+ * @lastUpdated: Mar 29, 2023
+ */
+
 /** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Users", {

@@ -1,3 +1,10 @@
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: Database and sequelize configurations
+ * @lastUpdated: Mar 29, 2023
+ */
+
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 const fs = require("fs");
@@ -10,6 +17,7 @@ const env = process.env.NODE_ENV || "development";
 const config = envConfigs[env];
 const db = {};
 
+//create a sequelize instance with credentials
 let sequelize;
 if (config.url) {
   sequelize = new Sequelize(config.url, config);

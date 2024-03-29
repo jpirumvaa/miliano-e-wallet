@@ -1,3 +1,10 @@
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: Seeder for wallet that creates a super wallet that controllers how much money has to circulate on users' accounts
+ * @lastUpdated: Mar 29, 2023
+ */
+
 const generateAccountNumber = require("../../utils/generateAccountNumber");
 
 module.exports = {

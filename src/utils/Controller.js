@@ -1,12 +1,21 @@
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: Class that supports implementation of all controllers
+ * @lastUpdated: Mar 29, 2023
+ * @lastUpdateKeyChanges: added include to retrieve data related to the model being queried
+ */
+
 import { sendMessage } from "../utils/sendMessage";
 
 export default class Controller {
+  //class constructor
   constructor(tableName, model, include = []) {
     this.tableName = tableName;
     this.model = model;
     this.include = include;
   }
-
+  //method to get all data form the model
   async getAll(req, res, next) {
     try {
       const data = await this.model.findAll({ include: this.include });
@@ -20,6 +29,8 @@ export default class Controller {
       );
     }
   }
+
+  //method to get one item from the model. Item is identifid by it's id that is passed in the params
   async getOne(req, res, next) {
     const { id } = req.params;
     try {
@@ -37,6 +48,8 @@ export default class Controller {
       );
     }
   }
+
+  //method to create one item in the model passed
   async createOne(req, res, next) {
     try {
       const data = await this.model.create({ ...req.body });
@@ -55,6 +68,8 @@ export default class Controller {
       );
     }
   }
+
+  //method to create multiple items at the same time in the model provided
   async bulkCreate(req, res, next) {
     try {
       const data = await this.model.bulkCreate(req.body);
@@ -73,6 +88,8 @@ export default class Controller {
       );
     }
   }
+
+  //method to update one item form the model provided
   async updateOne(req, res, next) {
     const { id } = req.params;
     try {

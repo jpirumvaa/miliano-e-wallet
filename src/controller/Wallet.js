@@ -1,3 +1,9 @@
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: Controller class for wallets. It inherts from Controller class and implements its methods.
+ * @lastUpdated: Mar 29, 2023
+ */
 import Controller from "../utils/Controller";
 import { Wallet, User } from "../database/models";
 

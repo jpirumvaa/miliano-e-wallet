@@ -1,9 +1,12 @@
-// const { Sequelize, Op } = require('sequelize');
-import db from "../database/models";
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: Controller that controls transactions. It inherits Controller class. It is called after transact method which does the actual transaction
+ * @lastUpdated: Mar 29, 2023
+ */
 
 import Controller from "../utils/Controller";
 import { Wallet, Transaction } from "../database/models";
-import { sendMessage } from "../utils/sendMessage";
 
 export default class TransactionController extends Controller {
   constructor(sequelize) {
@@ -11,18 +14,15 @@ export default class TransactionController extends Controller {
       {
         model: Wallet,
         as: "originWallet",
-        // attributes: ["id", "name", "roleName", "email", "phoneNumber"],
       },
       {
         model: Wallet,
         as: "destinationWallet",
-        // attributes: ["id", "name", "roleName", "email", "phoneNumber"],
       },
     ];
 
     super("Transaction", Transaction, include);
     this.sequelize = sequelize;
-
     this.getAll = this.getAll.bind(this);
     this.createOne = this.createOne.bind(this);
     this.updateOne = this.updateOne.bind(this);

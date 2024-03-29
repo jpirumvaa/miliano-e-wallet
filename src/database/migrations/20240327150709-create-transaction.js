@@ -1,5 +1,11 @@
 "use strict";
 /** @type {import('sequelize-cli').Migration} */
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: handles migration of Transactions table
+ * @lastUpdated: Mar 29, 2023
+ */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Transactions", {
