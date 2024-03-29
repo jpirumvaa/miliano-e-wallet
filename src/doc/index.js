@@ -1,3 +1,11 @@
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: Index file for the documentation
+ * @dependencies: imports and uses other individual documentation files which document every other unit
+ * @lastUpdated: Mar 29, 2023
+ */
+
 import { entryApiDoc } from "./app";
 
 export const options = {

@@ -1,31 +1,69 @@
-'use strict';
+"use strict";
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: handles migration of Users table
+ * @lastUpdated: Mar 29, 2023
+ */
+
 /** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable("Users", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+      },
+      nid: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
+      validated: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      roleName: {
+        type: Sequelize.ENUM("admin", "customer"),
+        defaultValue: "customer",
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
+      },
+      phoneNumber: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
+      password: {
+        type: Sequelize.STRING,
+      },
+      profilePhoto: {
+        type: Sequelize.STRING,
+      },
+      lastSession: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
-  }
+    await queryInterface.dropTable("Users");
+  },
 };

@@ -3,5 +3,5 @@ node_modules/
 *.idea
 coverage/
 dist/
-config/
 yarn-error.log
+.vercel

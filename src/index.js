@@ -1,4 +1,11 @@
 /* eslint-disable no-console */
+/**
+ * @author: Jean Pierre
+ * @contact: jimaniru@andrew.cmu.edu
+ * @description: application's entry file. It uses app.js, and database configurations
+ * @lastUpdated: Mar 29, 2023
+ */
+
 import app from "./app";
 import db from "./database/models";
 
