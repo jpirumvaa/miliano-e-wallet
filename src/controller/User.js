@@ -27,10 +27,14 @@ export default class UserController extends Controller {
     const user = await User.findOne({
       where: { email },
       raw: true,
-      attributes: ["id", "name", "email", "password", "roleName"],
+      attributes: ["id", "name", "email", "password", "roleName", "active"],
     });
     if (!user) {
       return sendMessage(res, 403, "Incorrect credentials");
+    }
+    // console.log(user);
+    if (!user.active) {
+      return sendMessage(res, 403, "Account is not activated");
     }
     const validPass = await bcrypt.compare(password, user.password);
     if (!validPass) {
@@ -43,6 +47,7 @@ export default class UserController extends Controller {
           name: user.name,
           email: user.email,
           role: user.roleName,
+          active: user.active,
         },
         process.env.JWT_SECRET,
         { expiresIn: "1d" }
