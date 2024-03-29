@@ -7,9 +7,11 @@ import { sendMessage } from "../utils/sendMessage";
 
 export default class UserController extends Controller {
   constructor() {
-    super(User);
+    super("User", User);
     this.getAll = this.getAll.bind(this);
     this.createOne = this.createOne.bind(this);
+    this.updateOne = this.updateOne.bind(this);
+    this.getOne = this.getOne.bind(this);
   }
   async login(req, res, next) {
     const { password, email } = req.body;
@@ -53,23 +55,5 @@ export default class UserController extends Controller {
   async logout(req, res, next) {
     res.clearCookie("auth-token", { path: "/" });
     return sendMessage(res, 200, "Logged out successfully");
-  }
-  async activateUser(req, res, next) {
-    const { id } = req.body;
-    try {
-      await User.update({ verified: true }, { where: { id } });
-      return sendMessage(res, 200, "User activated");
-    } catch (error) {
-      return sendMessage(res, 200, "Internal server error");
-    }
-  }
-  async disactivateUser(req, res, next) {
-    const { id } = req.body;
-    try {
-      await User.update({ verified: false }, { where: { id } });
-      return sendMessage(res, 200, "User disactivated");
-    } catch (error) {
-      return sendMessage(res, 200, "Internal server error");
-    }
   }
 }

@@ -17,6 +17,7 @@ module.exports = {
       },
       accountNumber: {
         type: Sequelize.STRING,
+        unique: true,
       },
       balance: {
         type: Sequelize.INTEGER,

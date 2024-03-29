@@ -8,11 +8,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Transaction.belongsTo(models.Transaction, {
+      Transaction.belongsTo(models.Wallet, {
         foreignKey: "originWalletId",
         as: "originWallet",
       });
-      Transaction.belongsTo(models.Transaction, {
+      Transaction.belongsTo(models.Wallet, {
         foreignKey: "destinationWalletId",
         as: "destinationWallet",
       });

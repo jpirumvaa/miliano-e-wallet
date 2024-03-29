@@ -1,49 +1,95 @@
 import { sendMessage } from "../utils/sendMessage";
 
 export default class Controller {
-  constructor(tableName) {
+  constructor(tableName, model, include = []) {
     this.tableName = tableName;
+    this.model = model;
+    this.include = include;
   }
 
   async getAll(req, res, next) {
     try {
-      const data = await this.tableName.findAll({});
-      return sendMessage(res, 200, "Data fetched", data);
+      const data = await this.model.findAll({ include: this.include });
+      return sendMessage(res, 200, `${this.tableName}s fetched`, data);
     } catch (error) {
-      return sendMessage(res, 500, "Error occured", error);
+      return sendMessage(
+        res,
+        500,
+        `Error getting ${this.tableName?.toLowerCase()}`,
+        error
+      );
+    }
+  }
+  async getOne(req, res, next) {
+    const { id } = req.params;
+    try {
+      const data = await this.model.findOne({
+        where: { id },
+        include: this.include,
+      });
+      return sendMessage(res, 200, `${this.tableName} fetched`, data);
+    } catch (error) {
+      return sendMessage(
+        res,
+        500,
+        `Error getting ${this.tableName?.toLowerCase()}`,
+        error
+      );
     }
   }
   async createOne(req, res, next) {
     try {
-      console.log(req.body.password);
-      const data = await this.tableName.create({ ...req.body });
-      return sendMessage(res, 200, "Created successfully", data);
+      const data = await this.model.create({ ...req.body });
+      return sendMessage(
+        res,
+        200,
+        `${this.tableName} created successfully`,
+        data
+      );
     } catch (error) {
-      return sendMessage(res, 500, "Error occured", error);
+      return sendMessage(
+        res,
+        500,
+        `Error creating${this.tableName?.toLowerCase()}`,
+        error
+      );
     }
   }
-  async buchCreate(req, res, next) {
+  async bulkCreate(req, res, next) {
     try {
-      const data = await this.tableName.bulkCreate({ ...req.body });
-      return sendMessage(res, 200, "Created successfully", data);
+      const data = await this.model.bulkCreate(req.body);
+      return sendMessage(
+        res,
+        200,
+        `${this.tableName} created successfully`,
+        data
+      );
     } catch (error) {
-      return sendMessage(res, 500, "Error occured", error);
+      return sendMessage(
+        res,
+        500,
+        `Error creating ${this.tableName?.toLowerCase()}s`,
+        error
+      );
     }
   }
-
-  postData(data) {
-    // Implementation to post data to the table
-    console.log(`Posting data to ${this.tableName}`);
-    console.log("Data:", data);
-    // Example: Posting data using AJAX
-    // AJAX request to post data to the table
-  }
-
-  updateData(id, newData) {
-    // Implementation to update data in the table
-    console.log(`Updating data in ${this.tableName} with ID: ${id}`);
-    console.log("New Data:", newData);
-    // Example: Updating data using AJAX
-    // AJAX request to update data in the table
+  async updateOne(req, res, next) {
+    const { id } = req.params;
+    try {
+      const data = await this.model.update({ ...req.body }, { where: { id } });
+      return sendMessage(
+        res,
+        200,
+        `${this.tableName} updated successfully`,
+        data
+      );
+    } catch (error) {
+      return sendMessage(
+        res,
+        500,
+        `Error updating ${this.tableName?.toLowerCase()}`,
+        error
+      );
+    }
   }
 }

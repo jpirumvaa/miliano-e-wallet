@@ -14,6 +14,7 @@ module.exports = {
       },
       nid: {
         type: Sequelize.STRING,
+        unique: true,
       },
       validated: {
         type: Sequelize.BOOLEAN,
@@ -29,9 +30,11 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
+        unique: true,
       },
       phoneNumber: {
         type: Sequelize.STRING,
+        unique: true,
       },
       password: {
         type: Sequelize.STRING,
